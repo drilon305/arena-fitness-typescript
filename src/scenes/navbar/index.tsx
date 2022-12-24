@@ -2,14 +2,19 @@ import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Logo from "@/assets/Logo.png";
 import Link from "./Link";
+import { SelectedPage } from "@/shared/types";
+import useMediaQuery from "@/hooks/useMediaQuery";
+import ActionButton from "@/shared/ActionButton";
 
 type Props = {
-  selectedPage: string;
-  setSelectedPage: (value: string) => void;
+  selectedPage: SelectedPage;
+  setSelectedPage: (value: SelectedPage) => void;
 };
 
 const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
   const flexBetween = "flex items-center justify-between";
+  const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false)
+  const isAboveMediumScreens = useMediaQuery('(min-width: 1060px)')
 
   return (
     <nav>
@@ -20,6 +25,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
             <img src={Logo} alt="logo" />
 
             {/* { RIGHT SIDE } */}
+            {isAboveMediumScreens ? (
             <div className={`${flexBetween} w-full`}>
               <div className={`${flexBetween} gap-8 text-sm`}>
                 <Link 
@@ -46,10 +52,19 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
               <div>
                 <div className={`${flexBetween} gap-8 `}>
                   <p>Sign In</p> 
-                  <button>Become a member</button>
+                  <ActionButton setSelectedPage={setSelectedPage}>Become a member</ActionButton>
                 </div>
-              </div>
-            </div>
+              </div> 
+            </div> 
+            ) : (
+              <button
+              className="rounded-full bg-secondary-500 p-2"
+              onClick={() => setIsMenuToggled(!isMenuToggled)}
+              >
+              <Bars3Icon className='w-6 h-6 text-white' />
+
+              </button>
+            ) }
           </div>
         </div>
       </div>
