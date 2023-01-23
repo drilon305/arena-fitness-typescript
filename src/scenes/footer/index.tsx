@@ -11,7 +11,7 @@ const Footer = () => {
             <img src={Logo} alt="logo" />
             <p className="my-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quisquam sit
              dolor dolore amet quod nam tenetur reprehenderit, rem enim.</p>
-             <p>© ArenaSport All Rights Reserved.</p>
+             <p>© EvoGym All Rights Reserved.</p>
         </div>
         <div className="mt-16 basis-1/4 md:mt-0">
             <h4 className="font-bold">About</h4>
